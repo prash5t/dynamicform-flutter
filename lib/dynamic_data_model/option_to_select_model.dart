@@ -11,4 +11,12 @@ class DynamicOptionToSelectModel {
     this.displayValue,
     this.submitValue,
   });
+
+  static const String kDisplay = "display";
+  static const String kValue = "value";
+
+  DynamicOptionToSelectModel.fromJson(Map<String, dynamic> json) {
+    displayValue = json[kDisplay];
+    submitValue = json[kValue];
+  }
 }
