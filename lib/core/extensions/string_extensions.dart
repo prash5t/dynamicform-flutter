@@ -1,7 +1,8 @@
+import 'package:dynamicform/core/enums/form_field_enum.dart';
 import 'package:flutter/material.dart';
 
 extension StringExtensions on String {
-  TextInputType getKeyboardType() {
+  TextInputType getDynamicKeyboardType() {
     switch (this) {
       case 'phone':
         return TextInputType.phone;
@@ -22,6 +23,21 @@ extension StringExtensions on String {
       case '':
       default:
         return TextInputType.text;
+    }
+  }
+
+  FormFieldEnums getDynamicFormFieldType() {
+    switch (this) {
+      case 'text':
+        return FormFieldEnums.text;
+      case 'dropdown':
+        return FormFieldEnums.dropdown;
+      case 'radio':
+        return FormFieldEnums.radio;
+      case 'date':
+        return FormFieldEnums.date;
+      default:
+        return FormFieldEnums.text;
     }
   }
 }
