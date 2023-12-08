@@ -1,3 +1,6 @@
+import 'package:dynamicform/extensions/string_extensions.dart';
+import 'package:flutter/material.dart';
+
 /// A model that encapsulates validation rules for a field.
 class DynamicFieldValidationModel {
   /// Indicates whether the field is required.
@@ -19,14 +22,19 @@ class DynamicFieldValidationModel {
   /// End date for the calender
   DateTime? endData;
 
+  /// Text input type: Usable for text form field
+  TextInputType? inputType;
+
   /// Constructs a [DynamicFieldValidationModel].
-  DynamicFieldValidationModel(
-      {this.isRequired,
-      this.pattern,
-      this.minLength,
-      this.maxLength,
-      this.startDate,
-      this.endData});
+  DynamicFieldValidationModel({
+    this.isRequired,
+    this.pattern,
+    this.minLength,
+    this.maxLength,
+    this.startDate,
+    this.endData,
+    this.inputType,
+  });
 
   static const String kRequired = "required";
   static const String kPattern = "pattern";
@@ -34,13 +42,18 @@ class DynamicFieldValidationModel {
   static const String kMaxLength = "maxLength";
   static const String kStartDate = "startDate";
   static const String kEndDate = "endDate";
+  static const String kInputType = "inputType";
 
   DynamicFieldValidationModel.fromJson(Map<String, dynamic> json) {
     isRequired = json[kRequired];
     pattern = json[kPattern];
     minLength = json[kMinLength];
     maxLength = json[kMaxLength];
-    startDate = DateTime.tryParse(kStartDate);
-    endData = DateTime.tryParse(kEndDate);
+    startDate = DateTime.tryParse(json[kStartDate]);
+    endData = DateTime.tryParse(json[kEndDate]);
+    if (json[kInputType] is String) {
+      String keyboardType = json[kInputType] as String;
+      inputType = keyboardType.getKeyboardType();
+    }
   }
 }
