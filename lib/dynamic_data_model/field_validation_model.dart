@@ -1,5 +1,5 @@
 /// A model that encapsulates validation rules for a text field.
-class DynamicTextFieldValidationModel {
+class DynamicFieldValidationModel {
   /// Indicates whether the field is required.
   bool? isRequired;
 
@@ -12,8 +12,8 @@ class DynamicTextFieldValidationModel {
   /// The maximum length allowed for the text field.
   int? maxLength;
 
-  /// Constructs a [DynamicTextFieldValidationModel].
-  DynamicTextFieldValidationModel({
+  /// Constructs a [DynamicFieldValidationModel].
+  DynamicFieldValidationModel({
     this.isRequired,
     this.pattern,
     this.minLength,
