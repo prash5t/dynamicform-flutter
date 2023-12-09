@@ -1,6 +1,6 @@
 import 'package:dynamicform/core/model/form_model.dart';
 import 'package:dynamicform/core/routes/app_routes.dart';
-import 'package:dynamicform/presentation/screens/dynamic_form_screen.dart';
+import 'package:dynamicform/presentation/screens/form_screen.dart';
 import 'package:dynamicform/presentation/screens/home_screen.dart';
 import 'package:dynamicform/presentation/screens/view_form_data_screen.dart';
 import 'package:dynamicform/presentation/screens/view_json_that_builds_dynamic_form_screen.dart';
