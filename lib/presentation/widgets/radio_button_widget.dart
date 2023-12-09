@@ -11,6 +11,8 @@ class DynamicRadioButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ValueNotifier<String> selectedRadioValue =
         ValueNotifier<String>(fieldModel.optionsToSelect![0].submitValue!);
+    // initially choosing first value of options as field's value
+    fieldModel.value = selectedRadioValue.value;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,6 +38,7 @@ class DynamicRadioButtonWidget extends StatelessWidget {
                           onChanged: (pickedOption) {
                             if (pickedOption != null) {
                               selectedRadioValue.value = pickedOption;
+                              fieldModel.value = pickedOption;
                             }
                           }),
                       Text(

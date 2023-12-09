@@ -12,6 +12,8 @@ class DynamicDropDownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<DynamicOptionToSelectModel> optionsToSelect =
         fieldModel.optionsToSelect ?? [];
+    // initially choosing first value of options as field's value
+    fieldModel.value = optionsToSelect[0].submitValue;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,7 +30,11 @@ class DynamicDropDownWidget extends StatelessWidget {
             decoration: InputDecoration(
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
-            onChanged: (pickedOption) {}),
+            onChanged: (pickedOption) {
+              if (pickedOption != null) {
+                fieldModel.value = pickedOption;
+              }
+            }),
       ],
     );
   }

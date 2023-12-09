@@ -19,7 +19,6 @@ class _DynamicDatePickWidgetState extends State<DynamicDatePickWidget> {
       DateFormat('MM/dd/yyyy').format(dateTime);
 
   void _pickDOBFromCalender() async {
-    print("pick dob");
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: widget.fieldModel.validationRule?.endData ?? DateTime.now(),
@@ -28,6 +27,7 @@ class _DynamicDatePickWidgetState extends State<DynamicDatePickWidget> {
     );
     if (pickedDate != null) {
       dateInputController.text = _getMMddyyyyDateInString(pickedDate);
+      widget.fieldModel.value = pickedDate.toUtc().toIso8601String();
     }
   }
 
@@ -35,6 +35,10 @@ class _DynamicDatePickWidgetState extends State<DynamicDatePickWidget> {
   void initState() {
     dateInputController.text = _getMMddyyyyDateInString(
         widget.fieldModel.validationRule?.endData ?? DateTime.now());
+    widget.fieldModel.value =
+        (widget.fieldModel.validationRule?.endData ?? DateTime.now())
+            .toUtc()
+            .toIso8601String();
     super.initState();
   }
 

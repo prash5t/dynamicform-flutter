@@ -5,6 +5,7 @@ import 'package:dynamicform/core/model/option_to_select_model.dart';
 
 class DynamicFieldModel {
   String? key;
+  String? value;
   FormFieldTypeEnums? type;
   String? label;
   List<DynamicOptionToSelectModel>? optionsToSelect;
@@ -16,6 +17,7 @@ class DynamicFieldModel {
     this.label,
     this.optionsToSelect,
     this.validationRule,
+    this.value,
   });
 
   static const String kKey = "key";

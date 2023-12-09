@@ -17,6 +17,9 @@ class DynamicTextFormField extends StatelessWidget {
         CustomText(text: fieldData.label ?? ""),
         8.toHGap(),
         TextFormField(
+          onChanged: (value) {
+            fieldData.value = value.trim();
+          },
           keyboardType: fieldData.validationRule?.inputType,
           // maxLength: fieldData.validationRule?.maxLength,
           inputFormatters: (allowRegex != null && allowRegex.trim() != "")
