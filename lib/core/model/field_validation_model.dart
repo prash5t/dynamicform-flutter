@@ -49,8 +49,14 @@ class DynamicFieldValidationModel {
     pattern = json[kPattern];
     minLength = json[kMinLength];
     maxLength = json[kMaxLength];
-    startDate = DateTime.tryParse(json[kStartDate]);
-    endData = DateTime.tryParse(json[kEndDate]);
+
+    if (json[kStartDate] != null) {
+      startDate = DateTime.tryParse(json[kStartDate]);
+    }
+
+    if (json[kEndDate] != null) {
+      endData = DateTime.tryParse(json[kEndDate]);
+    }
     if (json[kInputType] is String) {
       String keyboardType = json[kInputType] as String;
       inputType = keyboardType.getDynamicKeyboardType();
