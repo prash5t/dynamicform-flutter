@@ -1,3 +1,5 @@
+import 'package:dynamicform/core/routes/app_routes.dart';
+import 'package:dynamicform/core/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class DynamicFormApp extends StatelessWidget {
@@ -5,6 +7,10 @@ class DynamicFormApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.homeScreen,
+      onGenerateRoute: onGenerateRoute,
+    );
   }
 }
