@@ -1,5 +1,5 @@
 import 'package:dynamicform/core/model/form_model.dart';
-import 'package:dynamicform/presentation/widgets/dynamic_page_widget.dart';
+import 'package:dynamicform/presentation/widgets/page_widget.dart';
 import 'package:flutter/material.dart';
 
 class DynamicFormScreen extends StatefulWidget {
