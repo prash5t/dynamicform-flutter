@@ -22,6 +22,7 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: _buildNextFinishButton(formModel),
         body: PageView.builder(
