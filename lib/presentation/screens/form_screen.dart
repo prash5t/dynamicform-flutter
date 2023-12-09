@@ -11,10 +11,20 @@ class DynamicFormScreen extends StatefulWidget {
 }
 
 class _DynamicFormScreenState extends State<DynamicFormScreen> {
+  PageController pageController = PageController();
+  List<GlobalKey<FormState>> pageFormKeys = [];
   ValueNotifier<int> pageAt = ValueNotifier<int>(0);
 
-  bool isAtLastPage({required int pageAt, required int totalPages}) =>
+  bool isAtLastPage({required int pageAt}) =>
       pageAt == widget.formModel.pages!.length - 1;
+
+  @override
+  void initState() {
+    for (int i = 0; i < widget.formModel.pages!.length; i++) {
+      pageFormKeys.add(GlobalKey<FormState>());
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +36,13 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: _buildNextFinishButton(formModel),
         body: PageView.builder(
+          controller: pageController,
           itemCount: formModel.pages?.length ?? 0,
-          itemBuilder: (context, index) =>
-              DynamicPageWidget(pageFieldsData: formModel.pages![index]),
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => Form(
+              key: pageFormKeys[index],
+              child:
+                  DynamicPageWidget(pageFieldsData: formModel.pages![index])),
           onPageChanged: (newPageIndex) {
             pageAt.value = newPageIndex;
           },
@@ -46,12 +60,25 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
           child: ValueListenableBuilder(
               valueListenable: pageAt,
               builder: (context, pageIndex, child) => ElevatedButton(
-                  onPressed: () {},
-                  child: Text(isAtLastPage(
-                          pageAt: pageIndex,
-                          totalPages: formModel.pages?.length ?? 0)
-                      ? "Finish"
-                      : "Next")))),
+                  onPressed: () {
+                    if (pageFormKeys[pageIndex].currentState!.validate()) {
+                      debugPrint("page validated");
+                      if (isAtLastPage(pageAt: pageIndex)) {
+                        debugPrint("page validated and at last page");
+                      } else {
+                        goNextPage();
+                      }
+                    }
+                  },
+                  child: Text(
+                      isAtLastPage(pageAt: pageIndex) ? "Finish" : "Next")))),
+    );
+  }
+
+  void goNextPage() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
     );
   }
 }
