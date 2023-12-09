@@ -1,4 +1,6 @@
+import 'package:dynamicform/core/extensions/num_extensions.dart';
 import 'package:dynamicform/core/model/field_model.dart';
+import 'package:dynamicform/presentation/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +19,7 @@ class _DynamicDatePickWidgetState extends State<DynamicDatePickWidget> {
       DateFormat('MM/dd/yyyy').format(dateTime);
 
   void _pickDOBFromCalender() async {
+    print("pick dob");
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: widget.fieldModel.validationRule?.endData ?? DateTime.now(),
@@ -40,12 +43,20 @@ class _DynamicDatePickWidgetState extends State<DynamicDatePickWidget> {
     DynamicFieldModel fieldModel = widget.fieldModel;
     return InkWell(
       onTap: () => _pickDOBFromCalender(),
-      child: TextFormField(
-        controller: dateInputController,
-        readOnly: true,
-        decoration: InputDecoration(
-            labelText: fieldModel.label,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(text: fieldModel.label ?? ""),
+          8.toHGap(),
+          TextFormField(
+            onTap: () => _pickDOBFromCalender(),
+            controller: dateInputController,
+            readOnly: true,
+            decoration: InputDecoration(
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
+          ),
+        ],
       ),
     );
   }
