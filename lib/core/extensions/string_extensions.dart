@@ -1,4 +1,4 @@
-import 'package:dynamicform/core/enums/form_field_enum.dart';
+import 'package:dynamicform/core/enums/form_field_type_enum.dart';
 import 'package:flutter/material.dart';
 
 extension StringExtensions on String {
@@ -26,18 +26,18 @@ extension StringExtensions on String {
     }
   }
 
-  FormFieldEnums getDynamicFormFieldType() {
+  FormFieldTypeEnums getDynamicFormFieldType() {
     switch (this) {
       case 'text':
-        return FormFieldEnums.text;
+        return FormFieldTypeEnums.text;
       case 'dropdown':
-        return FormFieldEnums.dropdown;
+        return FormFieldTypeEnums.dropdown;
       case 'radio':
-        return FormFieldEnums.radio;
+        return FormFieldTypeEnums.radio;
       case 'date':
-        return FormFieldEnums.date;
+        return FormFieldTypeEnums.date;
       default:
-        return FormFieldEnums.text;
+        return FormFieldTypeEnums.text;
     }
   }
 }

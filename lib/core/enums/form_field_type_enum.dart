@@ -1,4 +1,4 @@
-enum FormFieldEnums {
+enum FormFieldTypeEnums {
   text,
   dropdown,
   radio,
