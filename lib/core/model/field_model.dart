@@ -1,4 +1,4 @@
-import 'package:dynamicform/core/enums/form_field_enum.dart';
+import 'package:dynamicform/core/enums/form_field_type_enum.dart';
 import 'package:dynamicform/core/extensions/string_extensions.dart';
 import 'package:dynamicform/core/model/field_validation_model.dart';
 import 'package:dynamicform/core/model/option_to_select_model.dart';
