@@ -1,4 +1,5 @@
 import 'package:dynamicform/core/model/page_model.dart';
+import 'package:dynamicform/presentation/widgets/dynamic_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class DynamicPageWidget extends StatelessWidget {
@@ -15,7 +16,8 @@ class DynamicPageWidget extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemCount: pageFieldsData.fields?.length ?? 0,
-              itemBuilder: (context, index) {},
+              itemBuilder: (context, index) =>
+                  DynamicFieldWidget(fieldData: pageFieldsData.fields![index]),
             )
           ],
         ),
