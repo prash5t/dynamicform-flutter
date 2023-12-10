@@ -1,4 +1,6 @@
 import 'package:dynamicform/core/model/form_model.dart';
+import 'package:dynamicform/core/routes/app_routes.dart';
+import 'package:dynamicform/presentation/screens/view_form_data_screen.dart';
 import 'package:dynamicform/presentation/widgets/page_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -80,11 +82,21 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
                             if (pageFormKeys[pageIndex]
                                 .currentState!
                                 .validate()) {
-                              debugPrint("page validated");
+                              Map<String, dynamic> thisPageFilledData =
+                                  formModel.pages![pageIndex].toJson();
                               debugPrint(
-                                  "page filled data: ${formModel.pages![pageIndex].toJson()}");
+                                  "page filled data: $thisPageFilledData");
+                              for (var field in thisPageFilledData.entries) {
+                                ViewFormDataScreen
+                                        .dynamicFormFilledValues[field.key] =
+                                    field.value;
+                              }
+
+                              // store the filled values in
                               if (isAtLastPage(pageAt: pageIndex)) {
                                 debugPrint("page validated and at last page");
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    AppRoutes.homeScreen, (route) => false);
                               } else {
                                 goNextPage();
                               }
