@@ -62,4 +62,16 @@ class DynamicFieldValidationModel {
       inputType = keyboardType.getDynamicKeyboardType();
     }
   }
+
+  fieldLengthValidator(value) {
+    if (isRequired ?? false) {
+      if (minLength != null && value.length < minLength) {
+        return "Min length: $minLength";
+      } else if (maxLength != null && value.length > maxLength) {
+        return "Max length: $maxLength";
+      }
+      return null;
+    }
+    return null;
+  }
 }
