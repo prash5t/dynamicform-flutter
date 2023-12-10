@@ -1,6 +1,6 @@
 import 'package:dynamicform/core/extensions/num_extensions.dart';
 import 'package:dynamicform/core/model/field_model.dart';
-import 'package:dynamicform/presentation/widgets/custom_text_widget.dart';
+import 'package:dynamicform/presentation/widgets/field_title_and_is_req_widget.dart';
 import 'package:flutter/material.dart';
 
 class DynamicRadioButtonWidget extends StatelessWidget {
@@ -16,7 +16,7 @@ class DynamicRadioButtonWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(text: fieldModel.label ?? ""),
+        FieldTitleAndIsReqWidget(fieldData: fieldModel),
         8.toHGap(),
         ValueListenableBuilder(
           valueListenable: selectedRadioValue,
