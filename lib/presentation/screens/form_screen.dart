@@ -53,25 +53,50 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
 
   Padding _buildNextFinishButton(DynamicFormModel formModel) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ValueListenableBuilder(
-              valueListenable: pageAt,
-              builder: (context, pageIndex, child) => ElevatedButton(
-                  onPressed: () {
-                    if (pageFormKeys[pageIndex].currentState!.validate()) {
-                      debugPrint("page validated");
-                      if (isAtLastPage(pageAt: pageIndex)) {
-                        debugPrint("page validated and at last page");
-                      } else {
-                        goNextPage();
-                      }
-                    }
-                  },
-                  child: Text(
-                      isAtLastPage(pageAt: pageIndex) ? "Finish" : "Next")))),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: ValueListenableBuilder(
+          valueListenable: pageAt,
+          builder: (context, pageIndex, child) => Row(
+                children: [
+                  if (pageIndex != 0)
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: SizedBox(
+                          height: 50,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              onPressed: () => goPreviousPage(),
+                              child: const Text("Back")),
+                        ),
+                      ),
+                    ),
+                  Expanded(
+                    child: SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (pageFormKeys[pageIndex]
+                                .currentState!
+                                .validate()) {
+                              debugPrint("page validated");
+                              debugPrint(
+                                  "page filled data: ${formModel.pages![pageIndex].toJson()}");
+                              if (isAtLastPage(pageAt: pageIndex)) {
+                                debugPrint("page validated and at last page");
+                              } else {
+                                goNextPage();
+                              }
+                            }
+                          },
+                          child: Text(isAtLastPage(pageAt: pageIndex)
+                              ? "Finish"
+                              : "Next")),
+                    ),
+                  ),
+                ],
+              )),
     );
   }
 
@@ -80,5 +105,10 @@ class _DynamicFormScreenState extends State<DynamicFormScreen> {
       duration: const Duration(milliseconds: 500),
       curve: Curves.ease,
     );
+  }
+
+  void goPreviousPage() {
+    pageController.previousPage(
+        duration: const Duration(milliseconds: 500), curve: Curves.ease);
   }
 }
