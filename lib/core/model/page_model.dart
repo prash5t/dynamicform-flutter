@@ -23,4 +23,12 @@ class DynamicPageModel {
       }
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    for (DynamicFieldModel field in fields ?? []) {
+      data[field.key!] = field.value;
+    }
+    return data;
+  }
 }
