@@ -1,14 +1,20 @@
-#### Easy to implement dynamic forms in Flutter
+# Dynamic Forms in Flutter
 
-Includes:
+Easily implement dynamic forms in Flutter with support for multiple pages, various field types, and validation.
 
-- Usable for multiple pages for same form purpose (Example: It can be for sign up form or KYC form containing fields in multiple pages)
-- Form fields to support widgets like text form field, drop down button, radio button, date picker
-- Suports field validation too including regex and min/max length validation
-- Supports keyboard type for text field
-- And most importantly to implement it in easy/simple way
+## Features
 
-App Screenshots
+- **Multi-page Forms:** Supports forms with multiple pages, making it versatile for different use cases (e.g., sign-up forms, KYC forms).
+
+- **Field Types:** Includes support for various field types, such as text form fields, drop-down buttons, radio buttons, and date pickers.
+
+- **Validation:** Field validation with support for regular expressions, minimum/maximum length validation, and more.
+
+- **Keyboard Types:** Customizable keyboard types for text fields.
+
+- **Easy Implementation:** Designed for easy and straightforward integration into your Flutter applications.
+
+## Screenshots
 
 <div style="display: flex;">
   <img src="./screenshots/1.GIF" alt="Screenshot 1" style="width: 200px; height: 400px; margin-right: 20px;">
